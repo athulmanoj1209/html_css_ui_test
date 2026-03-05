@@ -1,0 +1,196 @@
+<!-- <div class="gallery-card" *ngIf="images().length"> -->
+<!-- MAIN IMAGE -->
+<!-- <div class="preview-container">
+        <button class="nav prev" (click)="prev()">❮</button>
+
+        <img class="preview-image" [src]="images()[activeIndex()].itemImageSrc" />
+
+        <button class="nav next" (click)="next()">❯</button>
+    </div> -->
+
+<!-- THUMBNAILS -->
+<!-- <div class="thumbnail-container">
+        <img *ngFor="let img of images(); let i = index" [src]="img.thumbnailImageSrc" class="thumbnail"
+            [class.active]="i === activeIndex()" (click)="selectImage(i)" />
+    </div> -->
+<!-- </div> -->
+
+
+<!-- tree table -->
+<!-- <table class="tree-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <ng-container *ngFor="let node of files">
+      <ng-container
+        *ngTemplateOutlet="recursiveRow; context:{ $implicit: node, level: 0 }">
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table> -->
+
+<!-- Recursive Template -->
+<!-- <ng-template #recursiveRow let-node let-level="level"> -->
+<!-- <tr>
+    <td>
+      <div class="name-cell" [style.paddingLeft.px]="level * 20">
+
+        <-- Toggle Button -->
+<!-- <button
+          *ngIf="node.children?.length"
+          (click)="toggle(node)"
+          class="toggle-btn">
+          {{ node.expanded ? '▼' : '▶' }}
+        </button> -->
+
+<!-- {{ node.data.name }} -->
+<!-- </div> -->
+<!-- </td> -->
+
+<!-- <td>{{ node.data.size }}</td>
+    <td>{{ node.data.type }}</td> -->
+<!-- </tr> -->
+
+<!-- Children -->
+<!-- <ng-container *ngIf="node.expanded" >
+    <ng-container *ngFor="let child of node.children" ngClass="bg-black">
+      <ng-container
+        *ngTemplateOutlet="recursiveRow;
+        context:{ $implicit: child, level: level + 1 }">
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template> -->
+
+
+<!-- <table class="tree-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let node of flattenedFiles">
+      <td>
+        <div class="name-cell" [style.paddingLeft.px]="node.level * 20">
+
+          <button
+            *ngIf="node.children?.length"
+            (click)="toggle(node)"
+            class="toggle-btn">
+            {{ node.expanded == true ? '▼' : '▶' }}
+          </button>
+
+          {{ node.data.name }}
+        </div>
+      </td>
+
+      <td>{{ node.data.size }}</td>
+      <td>{{ node.data.type }}</td>
+    </tr>
+  </tbody>
+</table> -->
+
+<div class="tree-container">
+
+  <div *ngFor="let node of flattenedFiles">
+
+    <!-- FOLDER NODE -->
+    <div *ngIf="node.children?.length" class="folder-row" [style.paddingLeft.px]="node.level * 24"
+      (click)="toggle(node)">
+
+      <span class="toggle-icon">
+        {{ node.expanded ? '▼' : '▶' }}
+      </span>
+
+      <span class="folder-name">
+        {{ node.data.name }}
+      </span>
+
+      <span class="folder-meta">
+        ({{ node.data.type }} • {{ node.data.size }})
+      </span>
+
+    </div>
+
+
+    <!-- LEAF NODE (Material-like Card) -->
+    <div *ngIf="!node.children?.length" class="leaf-card-wrapper" [style.marginLeft.px]="node.level * 24">
+
+      <div class="leaf-card">
+
+        <div class="leaf-header">
+          <div class="leaf-avatar">
+            <img [src]="node.data.image" alt="card-image" />
+          </div>
+
+          <div class="leaf-header-text">
+            <div class="leaf-title">
+              {{ node.data.name }}
+            </div>
+
+            <div class="leaf-sub">
+              {{ node.data.type }} • {{ node.data.size }}
+            </div>
+          </div>
+        </div>
+
+        <div class="leaf-image" *ngIf="node.data.image">
+          <img [src]="node.data.image" alt="" />
+        </div>
+
+        <div class="leaf-content">
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct
+            spitz breeds of dog from Japan.
+          </p>
+        </div>
+
+        <div class="leaf-actions">
+          <button class="btn-stroked" (click)="getImageDetails(node.data.image); $event.stopPropagation()">
+            Image Details
+          </button>
+
+          <button class="btn-flat" (click)="viewDetails(); $event.stopPropagation()">
+            View Details
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="card">
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

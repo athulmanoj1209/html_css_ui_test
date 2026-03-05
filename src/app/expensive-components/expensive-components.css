@@ -1,0 +1,287 @@
+.gallery-card {
+    max-width: 640px;
+    margin: auto;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ---------- MAIN IMAGE ---------- */
+
+.preview-container {
+    position: relative;
+}
+
+.preview-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* ---------- NAV BUTTONS ---------- */
+
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* ---------- THUMBNAILS ---------- */
+
+.thumbnail-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    overflow-x: auto;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+}
+
+.thumbnail.active {
+    opacity: 1;
+    border: 2px solid #3b82f6;
+}
+
+
+/* tree table */
+
+.tree-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+.tree-table th,
+.tree-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.tree-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toggle-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  width: 20px;
+}
+
+.toggle-btn:hover {
+  color: #007ad9;
+}
+
+/* tr:hover {
+  background-color: #fafafa;
+} */
+
+
+/* grid table */
+.card {
+  padding: 1rem;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 50rem;
+  font-family: Arial, sans-serif;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.custom-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: black;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #fafafa;
+  color: black;
+}
+
+
+
+
+
+/*  */
+
+.tree-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ========================= */
+/* FOLDER ROW */
+/* ========================= */
+
+.folder-row {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folder-row:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.toggle-icon {
+  font-size: 14px;
+  width: 20px;
+}
+
+.folder-name {
+  font-weight: 600;
+}
+
+.folder-meta {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ========================= */
+/* LEAF CARD */
+/* ========================= */
+
+.leaf-card-wrapper {
+  margin-top: 8px;
+}
+
+.leaf-card {
+  width: 420px;
+  max-width: 100%;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* Header */
+
+.leaf-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.leaf-avatar img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f3f3f3;
+}
+
+.leaf-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.leaf-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.leaf-sub {
+  font-size: 12px;
+  color: rgba(0,0,0,0.6);
+}
+
+/* Image */
+
+.leaf-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #f5f5f5;
+}
+
+/* Content */
+
+.leaf-content {
+  padding: 12px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.75);
+}
+
+/* Actions */
+
+.leaf-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px;
+}
+
+/* Buttons */
+
+.btn-stroked {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #1976d2;
+  background: transparent;
+  color: #1976d2;
+  cursor: pointer;
+}
+
+.btn-flat {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-flat:hover {
+  background: #1565c0;
+}
