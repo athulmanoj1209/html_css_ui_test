@@ -1,21 +1,24 @@
-import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ImageService } from '../image.service';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Product, TreeNode } from '../models/product.types';
 import { Router } from '@angular/router';
+import { catchError, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-image',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AsyncPipe],
   templateUrl: './expensive-components.html',
   styleUrl: './expensive-components.css',
 })
-export class ExpensiveComponents {
+export class ExpensiveComponents implements OnInit, OnDestroy {
 
   private photoService = inject(ImageService);
   private cdr = inject(ChangeDetectorRef);
   private router = inject(Router);
+
+  private componentDestroyed$: Subject<boolean> = new Subject();
 
   // ======================
   // Gallery
@@ -45,7 +48,16 @@ export class ExpensiveComponents {
     // });
 
     // Tree
-    this.files = await this.photoService.getFilesystem();
+    this.photoService.getTreeData()
+      .pipe(takeUntil(this.componentDestroyed$),catchError((error: Error) => {
+          console.log("error in admin register", error.message);
+          throw error;
+        }))
+      .subscribe((response: any) => {
+        console.log("tree response", response.data);
+        this.files = response?.data
+      });
+    // this.files = await this.photoService.getFilesystem();
     this.buildTree();
 
     this.cdr.detectChanges();
@@ -117,11 +129,15 @@ export class ExpensiveComponents {
     console.log(node);
   }
 
-  viewDetails() {
-    console.log("router");
-    this.router.navigate(['/under-develop']);
+  viewDetails(nodeData: any) {
+    console.log("router", nodeData);
+    this.router.navigate(['/auditor-details', nodeData.empId]);
   }
 
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
+  }
 
 }
 

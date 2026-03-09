@@ -1,0 +1,58 @@
+<!-- Plain HTML Card Version -->
+<div *ngIf="auditorInfo$ | async as aud" class="auditor-wrapper">
+  <div class="card-container">
+
+    <div class="custom-card">
+
+      <!-- Header -->
+      <div class="card-header">
+        <img *ngIf="aud.image"
+             class="avatar-img"
+             [src]="'http://localhost:5250/uploads/' + aud.image"
+             [alt]="aud.auditNode?.data?.name + ' avatar'" />
+
+        <div class="header-text">
+          <div class="card-title">
+            {{ aud.auditNode?.data?.name }}
+          </div>
+          <div class="card-subtitle">
+            {{ aud.type }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Large Image -->
+      <img *ngIf="aud.image"
+           class="card-main-image"
+           [src]="'http://localhost:5250/uploads/' + aud.image"
+           [alt]="aud.auditNode?.data?.name + ' photo'" />
+
+      <!-- Content -->
+      <div class="card-content">
+        <div class="meta">
+          <p><strong>Employee ID:</strong> {{ aud.empId }}</p>
+          <p><strong>Department:</strong> {{ aud.dept }}</p>
+          <p *ngIf="aud.contact">
+            <strong>Email:</strong>
+            <a [href]="'mailto:' + aud.contact">{{ aud.contact }}</a>
+          </p>
+        </div>
+
+        <div class="description">
+          <h4>Profile Summary</h4>
+          <p>{{ aud.description }}</p>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <button class="send-btn"
+                (click)="onSendRequest(aud?.contact)">
+          ✉ Send Request
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

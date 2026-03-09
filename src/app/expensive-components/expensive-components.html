@@ -130,7 +130,7 @@
 
         <div class="leaf-header">
           <div class="leaf-avatar">
-            <img [src]="node.data.image" alt="card-image" />
+            <img [src]="`http://localhost:5250/uploads/${node?.data?.image}`" alt="card-image" />
           </div>
 
           <div class="leaf-header-text">
@@ -145,22 +145,11 @@
         </div>
 
         <div class="leaf-image" *ngIf="node.data.image">
-          <img [src]="node.data.image" alt="" />
-        </div>
-
-        <div class="leaf-content">
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct
-            spitz breeds of dog from Japan.
-          </p>
+          <img [src]="`http://localhost:5250/uploads/${node?.data?.image}`" alt="" />
         </div>
 
         <div class="leaf-actions">
-          <button class="btn-stroked" (click)="getImageDetails(node.data.image); $event.stopPropagation()">
-            Image Details
-          </button>
-
-          <button class="btn-flat" (click)="viewDetails(); $event.stopPropagation()">
+          <button class="btn-flat" (click)="viewDetails(node?.data); $event.stopPropagation()">
             View Details
           </button>
         </div>
