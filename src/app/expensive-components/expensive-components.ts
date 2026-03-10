@@ -3,7 +3,7 @@ import { ImageService } from '../image.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Product, TreeNode } from '../models/product.types';
 import { Router } from '@angular/router';
-import { catchError, Subject, takeUntil } from 'rxjs';
+import { catchError, Subject, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-image',
@@ -49,16 +49,20 @@ export class ExpensiveComponents implements OnInit, OnDestroy {
 
     // Tree
     this.photoService.getTreeData()
-      .pipe(takeUntil(this.componentDestroyed$),catchError((error: Error) => {
+      .pipe(
+        tap((response: any) => this.files == response.data),
+        takeUntil(this.componentDestroyed$),catchError((error: Error) => {
           console.log("error in admin register", error.message);
           throw error;
         }))
       .subscribe((response: any) => {
-        console.log("tree response", response.data);
-        this.files = response?.data
+        console.log("tree response", response);
+        this.files = response?.data;
+        this.buildTree();
+        this.cdr.detectChanges();
       });
     // this.files = await this.photoService.getFilesystem();
-    this.buildTree();
+    
 
     this.cdr.detectChanges();
 

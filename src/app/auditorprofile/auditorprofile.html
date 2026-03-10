@@ -6,10 +6,8 @@
 
       <!-- Header -->
       <div class="card-header">
-        <img *ngIf="aud.image"
-             class="avatar-img"
-             [src]="'http://localhost:5250/uploads/' + aud.image"
-             [alt]="aud.auditNode?.data?.name + ' avatar'" />
+        <img *ngIf="aud.image" class="avatar-img" [src]="'http://localhost:5250/uploads/' + aud.image"
+          [alt]="aud.auditNode?.data?.name + ' avatar'" />
 
         <div class="header-text">
           <div class="card-title">
@@ -22,10 +20,8 @@
       </div>
 
       <!-- Large Image -->
-      <img *ngIf="aud.image"
-           class="card-main-image"
-           [src]="'http://localhost:5250/uploads/' + aud.image"
-           [alt]="aud.auditNode?.data?.name + ' photo'" />
+      <img *ngIf="aud.image" class="card-main-image" [src]="'http://localhost:5250/uploads/' + aud.image"
+        [alt]="aud.auditNode?.data?.name + ' photo'" />
 
       <!-- Content -->
       <div class="card-content">
@@ -46,8 +42,10 @@
 
       <!-- Footer -->
       <div class="card-footer">
-        <button class="send-btn"
-                (click)="onSendRequest(aud?.contact)">
+        <button class="send-btn" (click)="onSubmitRequest()">
+          Submit Request
+        </button>
+        <button class="send-btn" (click)="onSendRequest(aud?.contact)">
           ✉ Send Request
         </button>
       </div>
@@ -55,4 +53,60 @@
     </div>
 
   </div>
+</div>
+
+
+
+
+
+<!-- dialog box  -->
+
+<!-- backdrop + dialog -->
+<div class="modal-backdrop" *ngIf="visible" (click)="close()" aria-hidden="true"></div>
+
+<div class="dialog" *ngIf="visible" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"
+  (click)="$event.stopPropagation()">
+  <header class="dialog-header">
+    <h2 id="dialogTitle">Submit Service Request</h2>
+    <button class="icon-btn" aria-label="Close" (click)="close()">✕</button>
+  </header>
+
+  <section class="dialog-body">
+    <form [formGroup]="form" (ngSubmit)="submitRequest()">
+
+      <!-- Multi-select -->
+      <div class="select-wrap">
+        <label class="field-label" for="services">Select Services</label>
+
+        <select id="services" formControlName="services" multiple size="6" class="multi-select">
+          <option *ngFor="let s of servicesList" [value]="s.id">
+            {{ s.serviceName }}
+          </option>
+        </select>
+
+        <!-- simple chips preview of selections -->
+        <div class="chips" *ngIf="selectedServices.length">
+          <span class="chip" *ngFor="let s of selectedServices">{{ s }}</span>
+        </div>
+      </div>
+      <div id="servicesHelp" class="help-text">Hold Ctrl/Cmd (or Shift) to multi-select; or use the chips.</div>
+
+      <!-- File input -->
+      <label class="field-label" for="file">Upload Supporting File</label>
+      <div class="file-row">
+        <label class="file-choose">
+          <input id="file" type="file" (change)="onFileChange($event)" />
+          <span class="file-text">{{ selectedFileName || 'Choose file...' }}</span>
+        </label>
+
+        <button type="button" class="btn secondary" (click)="clearFile()">Clear</button>
+      </div>
+
+      <!-- Actions -->
+      <div class="dialog-actions">
+        <button type="button" class="btn secondary" (click)="close()">Cancel</button>
+        <button type="submit" class="btn primary">Submit Request</button>
+      </div>
+    </form>
+  </section>
 </div>

@@ -113,3 +113,153 @@
 .send-btn:hover {
   background-color: #004c99;
 }
+
+:host { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; display:block; }
+
+    /* Trigger button */
+    .open-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #1976d2;
+      background: #1976d2;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1000;
+      backdrop-filter: blur(1px);
+    }
+
+    /* Dialog container */
+    .dialog {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 720px;
+      max-width: 95vw;
+      max-height: 90vh;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 12px 32px rgba(2,6,23,0.35);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #eee;
+      gap: 1rem;
+    }
+
+    .dialog-header h2 { margin: 0; font-size: 1.125rem; }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .dialog-body {
+      padding: 1rem 1.25rem;
+      overflow-y: auto;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #222;
+    }
+
+    /* Multi-select styling (native) */
+    .select-wrap { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .multi-select {
+      width: 100%;
+      min-height: 8rem;
+      border-radius: 8px;
+      border: 1px solid #d0d7de;
+      padding: 0.45rem;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+
+    .chips { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top: 0.5rem; }
+    .chip {
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.85rem;
+      color: #111827;
+    }
+
+    .help-text { font-size: 0.82rem; color: #6b7280; margin-bottom: 1rem; }
+
+    /* File input */
+    .file-row { display:flex; align-items:center; gap:0.75rem; margin-bottom: 1.25rem; }
+    .file-choose {
+      display:flex;
+      align-items:center;
+      gap:0.6rem;
+      border: 1px dashed #cbd5e1;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .file-choose input[type="file"] {
+      display: none;
+    }
+    .file-text { font-size: 0.95rem; color: #111827; }
+
+    /* Buttons */
+    .dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid #eee;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .btn {
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn.primary {
+      background: linear-gradient(180deg,#0f62fe,#0456d6);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(3,102,214,0.18);
+      border-color: rgba(2,6,23,0.04);
+    }
+    .btn.secondary {
+      background: #fff;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 520px) {
+      .dialog { width: 95vw; }
+      .multi-select { min-height: 6rem; }
+      .dialog-actions { padding: 0.75rem; flex-direction: column-reverse; align-items: stretch; gap: 0.5rem; }
+      .dialog-actions .btn { width: 100%; }
+    }
+  
